@@ -1,0 +1,166 @@
+Controlling your Player
+=======================
+
+You know how the game works, but how do you make your player move? 
+
+=====	 ======
+**P**    Pause
+=====	 ======
+
+Human Players
+-------------
+
+Player 1 Controls
+~~~~~~~~~~~~~~~~~
+
+==============	 	===================================
+**KEY**     		**ACTION** 
+--------------		----------------------------------- 
+**W** 	 			Up
+**A** 	 			Left
+**S** 	 			Down
+**D** 	 			Right
+**Q** 	 			Laser
+**E** 	 			Shield
+**Spacebar**		Shoot
+**1**  	 			Teleport to 1st teleport pad
+**2** 	 			Teleport to 2nd teleport pad
+**3**	 			Teleport to 3rd teleport pad
+**4** 	 			Teleport to 4th teleport pad
+**5** 	 			Teleport to 5th teleport pad
+**6** 	 			Teleport to 6th teleport pad
+==============	 	===================================
+
+
+Player 2 Controls
+~~~~~~~~~~~~~~~~~
+==============	 	===================================
+**KEY**     		**ACTION** 
+--------------		----------------------------------- 
+**Up Key** 	 		Up
+**Left Key** 		Left
+**Down Key** 		Down
+**Right Key**		Right
+**Enter**			Shoot
+**,** 				Laser
+**.** 				Shield
+**J** 				Teleport to 1st teleport pad
+**K**   			Teleport to 2nd teleport pad
+**L**   			Teleport to 3rd teleport pad
+**U**   			Teleport to 4th teleport pad
+**I**   			Teleport to 5th teleport pad
+**O**   			Teleport to 6th teleport pad
+==============	 	===================================
+
+AI Players
+----------
+
+For bots that are controlled by an AI, it will move based on the move instructions sent to them by said AI.
+
+The valid values for a move instructions are listed below.
+
+.. NOTE::
+	All these moves are prepended with "*Move.*" because they are declared as enums
+	
+.. code-block:: java
+	
+	/**
+	 * Turn to face up.
+	 */
+	FACE_UP,
+	
+	/**
+	* Turn to face down.
+	*/
+	FACE_DOWN,
+	
+	/**
+	* Turn to face to the left.
+	*/
+	FACE_LEFT,
+	
+	/**
+	* Turn to face to the right.
+	*/
+	FACE_RIGHT,
+	
+	/**
+	* Do nothing.
+	*/
+	NONE, 
+	
+	/**
+	* Shoot in the direction you're facing.
+	*/
+	SHOOT,
+	
+	/**
+	* Move forward in the direction you're facing.
+	*/
+	FORWARD,	
+	
+	/**
+	* Use shield power up if possible, does nothing if no shield
+	* power up.
+	* 
+	* This shield lasts for 5 turns.
+	*/
+	SHIELD, 
+	
+	/**
+	* Use laser power up if possible, does nothing if no laser power
+	* up.
+	* 
+	* The laser fires in all direction for 4 squares, stops short on a
+	* wall, turret or player.
+	*/
+	LASER, 
+	
+	/**
+	* Teleport to teleport location 0 if possible, does nothing if 
+	* no teleport power up or the teleport location doesn't exist.
+	*/
+	TELEPORT_0, 
+	
+	/**
+	* Teleport to teleport location 1 if possible, does nothing if
+	* no teleport power up or the teleport location doesn't exist.
+	*/
+	TELEPORT_1, 
+	
+	/**
+	* Teleport to teleport location 2 if possible, does nothing if
+	* no teleport power up or the teleport location doesn't exist.
+	*/
+	TELEPORT_2, 
+	
+	/**
+	* Teleport to teleport location 3 if possible, does nothing if
+	* no teleport power up or the teleport location doesn't exist.
+	*/
+	TELEPORT_3, 
+	
+	/**
+	* Teleport to teleport location 4 if possible, does nothing if
+	* no teleport power up or the teleport location doesn't exist.
+	*/
+	TELEPORT_4, 
+	
+	/**
+	* Teleport to teleport location 5 if possible, does nothing if
+	* no teleport power up or the teleport location doesn't exist.
+	*/
+	TELEPORT_5;
+
+The move instructions are executed if they are valid moves. Valid moves are defined to be moves that follow the game rules.  For more information, please look at :doc:`game`.
+
+Once the AI has sent a move instruction for a given turn, there is no way to change the move instruction. 
+
+.. WARNING::
+  Please note that there is a 250ms time limit for getMove to return.
+
+  If you are trying to search the entire board, this could be an issue on the larger 21x21 maps.
+
+
+
+

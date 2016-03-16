@@ -1,0 +1,163 @@
+The Game
+========
+
+.. figure:: images/intro.png
+	:align: center
+	
+*Above is a screenshot of a game in progress*
+
+Game Overview
+--------------
+
+Game Objective
+~~~~~~~~~~~~~~
+
+The main objective is to collect the most amount of points without being killed. The game ends when a player reaches 0 HP or the game hits the limit number of turns. Please note that in the grading and competition format the score will be used to determine the strength of the AI. For more information on grading, take a look at: :doc:`challenge`
+
+
+Turns
+~~~~~~
+The game is played in a series of turns. Each turn, you may either rotate to face a direction, shoot, use a power-up, move forward or do nothing.
+If you do not make a move within the time limit, you do nothing for a turn (stay still).
+The turn counter will iterate and the game will end once the max number of turns per player has been reached set by the game.
+  
+
+End Game
+~~~~~~~~
+The game ends when a player reaches 0 HP (health). If both players die on the same turn or the game reaches the maximum number of turns, the game ends and the player with the higher number of points is the victor. The final scores are then tallied up.
+
+Map Items & Power-ups
+---------------------
+There are various things that can appear on the map which each item may or may not be on the map. The top left corner is (0,0).
+
+Board Layout
+~~~~~~~~~~~~~
+
+.. figure:: images/walls.png
+
+
+All boards are created symmetrically and wrap around to the other side in various sizes. Each level will have a different amount of walls, power-ups, teleport locations and starting locations for each players. Maps are located under the folder *Resources/Maps* in JSON format if you wish to test your AI out or edit some maps.
+
+Wrap around means if you were to move off the board on one end, you'd appear on the other end facing the same direction. For example, if the board was a square board of size 3, if you are to go up from (0,0), you'll show up on (0,2). 
+
+Walls
+~~~~~~
+.. figure:: images/Wall.png
+
+A wall acts as a barrier such that neither players, bullets nor lasers can move through it. Walls cannot be destroyed.
+
+Players
+~~~~~~~~~~~~
+
+.. figure:: images/player1.png
+	:align: center
+.. figure:: images/player2.png
+	:align: center
+
+*From left to right the players states are: Regular, Hit, Shielded. Note that player 1 is orange and player 2 is blue*
+
+Players on a turn will be facing a direction and are not allowed to move onto an already occupied square.
+
+.. NOTE::
+	In a case where both players wish to move onto the same square, both players' moves are cancelled. This is also the case if both players wish the teleport onto the same square. Additionally, if a player attempts to move onto a square occupied in the next turn by a player, wall, or turret the move is cancelled.
+
+Shooting
+~~~~~~~~~
+.. figure:: images/Shooting.png
+	
+	
+*Player 1 Shooting*
+
+On any turn, a player can shoot. When shooting, the bullet starts on the square directly ahead of the player and will travel in the direction the player is currently facing. Bullets move 1 space per turn. All bullets travel indefinitely until they hit either a player, turret, or wall. Bullets, like players, wrap around the map.
+
+Turrets
+~~~~~~~~
+.. figure:: images/TurretAlive.png
+	:align: left
+.. figure:: images/TurretDead.png
+
+
+*Left: Live Turret, Right: Disabled Turret*
+
+.. figure:: images/Laser Map.png
+	:align: left
+	
+*Above: Turrets firing*
+
+
+Turrets are placed on the map and fire in a pre-set pattern. Turrets also act as a wall such neither players, lasers, nor bullets can go through it. Turrets, when firing, will behave the same as a player activating a laser power-up (*see below for explanation of the laser power-up*). Each turret has 1 HP and is deactivated once shot by a player and the turret will no longer fire. 
+
+A turret will always fire after the initialization turn (as in on the first turn) unless it has 0 fire time (length of time the turret fires for). As a pattern, all turrets will fire for its specified fire time, and then cool down for its specified cooldown time (the length of time between fire). Take, for example, a turret with 2 turns of fire time and 4 turns of cooldown time. This turret will fire on the first and second turn. It will then go onto cooldown for 4 turns, during which it will not fire. On the on the 7th turn it will fire again, repeating the same pattern of 2 turns shooting, 4 turns cooling down.
+
+
+Power-ups
+~~~~~~~~~~
+.. figure:: images/powerup.png
+
+*From left to right: Laser, Shield, Teleport*
+
+The 3 available power-ups are pictured above. Their contents and how they work are explained in detail below. To pick a power-up, you move onto the square on which it is located on. Once a power-up is picked up, it will disappear from the map and move into the relevant player's inventory. A player may hold multiple power-ups and multiple of the same power-ups.
+
+.. NOTE::
+	A power-up is not used the moment it is collected but instead it goes to the player's inventory. To use a power-up, you must activate it on one of your turns. Power-ups are consumables meaning that once used, they cannot be used again unless a new power-up is collected.
+
+
+Power-up: Laser 
+****************
+
+.. figure:: images/laser.png
+
+.. figure:: images/PlayerLaser.png
+
+*Above, player 1 is using a laser and what the laser power-up appears as*
+
+When a laser power-up is activated, the squares in each of the 4 directions (up, down, left, right) for 4 squares are instantly hit. If a wall, turret, or a player is hit along the way by a laser, it will block the laser from continuing in that direction and the laser will be stopped in that direction. If a laser hits a player, they will lose an HP. If a laser hits a turret, it will disable the turret. Lasers, like bullets and players, wrap around the map.
+
+.. NOTE::
+	If a laser hits a player with a shield on, the laser is reflected at the shooter causing the shooter (turret or opponent), to lose an HP.
+
+	
+Power-up: Shield
+**********************
+.. figure:: images/Shield.png
+
+A shield protects your player from damage for a turn and expires in 5 turns. If a shield blocks damage, the shield expires immediately the next turn. You can take multiple hits on the same turn.
+
+Additionally, if you are hit by a laser while your shield is activated, the damage is reflected back at the shooter. If the user was a turret, you will kill the turret. If it was your opponent, it will cause the opponent to lose 1 HP (unless they too have a shield on in which case neither of you lose HP).
+ 
+Power-up: Teleport
+**********************
+
+.. figure:: images/Teleport.png
+	:align: left
+.. figure:: images/TeleportPad.png
+
+*Left: teleport power-up to collect. Right: teleport pad to teleport onto*
+
+Per move, a player with a teleport power-up may move onto one of the teleport pads. Each teleport pad is identified by a number that is then used by an AI to choose a teleport pad location.
+
+.. NOTE::
+	Your power-up is still consumed even if the you were unable to teleport onto your selected square (i.e your opponent was occupying the square)
+
+FAQ
+----- 
+
+
+* **Q**: *What if a player tries to use a power-up which it doesn't have?*
+
+**A**: The move is processed as invalid and the player will do nothing.
+
+
+* **Q**: *Can I run into my opponent?*
+
+**A**: No, you cannot. In the case you attempt to occupy a square your opponent is still on, your move is cancelled and you stay still for a turn.
+
+
+* **Q**: *What if both players have shields on and both shoot each other with a laser?*
+
+**A**: In the rare case in that happens, both players take no damage, both of their shields are used up this turn, and they both get points for hitting each other from the reflection of the shield.
+
+
+* **Q**: *What happens when the game reaches max turn?*
+
+**A**: The game terminates and tally ups the final score.

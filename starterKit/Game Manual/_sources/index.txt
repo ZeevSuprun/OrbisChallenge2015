@@ -1,0 +1,36 @@
+Welcome!
+================================
+Welcome to the 2015 Orbis Challenge! 
+This year's Orbis Challenge will involve creating an AI for **BotRampage**, where 2 robots hunt objectives and one another for victory! 
+
+.. NOTE::
+  Even if you are familiar with Java or Python, you should still read the documentation. The documents contains important information about the game, grading and competition rules.
+
+
+Setting Up
+----------
+.. toctree::
+   :maxdepth: 5
+   
+   Quick Start Guide <quick>
+   Configuring your IDE <javaide>
+   Command Line Arguments <commands>
+
+
+What is BotRampage?
+--------------------
+.. toctree::
+   :maxdepth: 5
+
+   The Game <game>   
+   Controlling Your Player <controls>
+   How the Competition is Structured <challenge>
+   Replay System <replay>
+
+API Documentation
+-----------------
+.. toctree::
+   :maxdepth: 5
+   
+   Java API <javaapi>
+   Python API <pythonapi>

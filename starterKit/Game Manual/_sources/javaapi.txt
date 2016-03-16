@@ -1,0 +1,122 @@
+Java API
+=========
+
+All of the available information regarding the game is provided to the getMove method in PlayerAI.
+	
+.. WARNING::
+  Don't change the function definition for getMove. This function is called by the client code (which you also shouldn't modify) because when you submit your file only your PlayerAI file and any additional libraries are kept and any client code is removed. Thus, if you change the method, your code will cause an Exception and ultimately invalidate all of your work.
+  
+  
+The Game Map
+------------
+The game map is represented as a 2D array and is accessible through the gameboard variable that is passed as a parameter to getMove. The board is represented as a 2D array and each tile has an associated Cartesian coordinate with the top left tile being (0, 0).
+
+.. figure:: images/Intro.png
+	:align: center
+
+.. code-block:: java
+
+	//Some sample code with gameboard with the above gameboard
+	System.out.println(gameboard.getWidth() == 13); //true
+	System.out.println(gameboard.getHeight() == ); //false
+	gameboard.getPowerUps(); //Gets a list of power ups
+	System.out.println(gameboard.getPowerUps().size() == 5); //true
+	gameboard.getTurnsRemaining(); // Gets turns remaining in the game
+	gameboard.getCurrentTurnNumber(); // Gets the current turn number
+	gameboard.getBullets(); // Gets an ArrayList of Bullet Objects on the board
+	gameboard.getTurrets(); // Gets an ArrayList of Turret objects on the board
+	gameboard.getWalls(); // Gets an ArrayList of Wall objects on the board	
+	gameboard.getTeleportLocations(); // Gets an ArrayList of Points of teleport locations
+	gameboard.isPowerUpAtTile(0,0); //false
+	gameboard.isPowerUpAtTile(6,7); //true
+	gameboard.areBulletsAtTile(0,0); //false
+	gameboard.isWallAtTile(0,0); //false
+	gameboard.isWallAtTile(3,0); //true
+	gameboard.getPowerUpAtTile(6,7); //Gets the teleport power up at (6,7)
+	gameboard.getPowerUpAtTile(0,0); //Throws NoItemException
+	gameboard.getTeleportLocations (); //Gets a list of points in order of the teleport locations 
+	gameboard.getPowerUps().get(0).getPowerUpType(); //Gets the powerUpType of the first power up
+	if (gameboard.isTurretAtTile(3,5)){
+		gameboard.getTurretAtTile(3,5).didFire(); //Checks if the turret fired at the beginning of this turn
+		gameboard.getTurretAtTile(3,5).isFiringNextTurn(); //Checks if it is going to fire
+		gameboard.getTurretAtTile(3,5).getFireTime(); // Get the fire time
+		gameboard.getTurretAtTile(3,5).getCooldownTime(); // Get cooldown time
+	}
+	System.out.println(gameboard.getPowerUpAtTile(6, 7).getPowerUpType() == PowerUpTypes.SHIELD); //false
+	System.out.println(gameboard.getPowerUpAtTile(6, 7).getPowerUpType() == PowerUpTypes.TELEPORT); //true
+	
+	// And if there were bullets on the field
+	gameboard.getBullets().get(0).getDirection(); // Gets the direction the bullet is travelling
+	gameboard.getBullets().get(0).getShooter(); // Get the shooter of the bullet
+	
+
+.. WARNING::
+	If you try getting an item that doesn't exist on a square (i.e gameboard.getPowerUpAtTile(0,0)) it will throw a NoItemException.
+
+.. WARNING::
+	If you try to query a location outside the map boundaries (such as gameboard.getTurretAtTile(-1,-1)), you'll get a MapOutOfBoundsException.
+
+
+The Players
+------------
+Your player is represented by the player object while the opponent is represented as the opponent object.
+
+.. code-block:: java
+
+	//Some sample code with the above gameboard 
+	//Player class
+	player.getX(); //Gets x-coordinate
+	player.getY(); //Gets y-coordinate
+	player.getLaserCount(); //The number of laser power ups the player has in their inventory
+	player.getTeleportCount(); //The number of teleport power ups the player has in their inventory
+	player.getShieldCount(); //The number of shield power ups the player has in their inventory
+	player.getShooters(); //Gets an ArrayList of all the shooters 
+			      //from last turn which corresponds with shotByProjectileTypes
+			      //object is null if shot by turret
+	player.shotByProjectileTypes(); //Gets an ArrayList of all the projectiles, they are Enum of either LASER or BULLET
+	player.wasHit(); //Get if they were hit last turn
+	player.isShieldActive(); //Gets if the player shield is active this turn
+	player.getHP(); //Gets the hp of the player
+	player.getScore(); // Gets the score of the player
+	player.getDirection(); // Gets the direction of the player
+	
+	//Opponent class
+	opponent.getX(); //Gets x-coordinate
+	opponent.getY(); //Gets y-coordinate
+	opponent.isShieldActive(); //Gets if the opponent shield is active this turn
+	opponent.getHP(); //Gets the HP of the opponent
+	opponent.getScore(); //Gets the score of the opponent
+	opponent.getLastMove();  	//Gets what Enum Move the opponent made last turn
+	opponent.getDirection(); // Gets the direction the opponent is facing
+	opponent.getLaserCount(); //The number of laser power ups the opponent has in their inventory
+	opponent.getTeleportCount(); //The number of teleport power ups the opponent has in their inventory
+	opponent.getShieldCount(); //The number of shield power ups the opponent has in their inventory
+		
+What To Return
+----------------
+getMove returns a Move. Here they are listed for your convenience. For more information check out: :doc:`controls`
+
+.. code-block:: java
+
+	Move.FACE_UP
+	Move.FACE_DOWN
+	Move.FACE_LEFT
+	Move.FACE_RIGHT
+	Move.NONE
+	Move.SHOOT
+	Move.FORWARD
+	Move.SHIELD
+	Move.LASER
+	Move.TELEPORT_0
+	Move.TELEPORT_1
+	Move.TELEPORT_2
+	Move.TELEPORT_3
+	Move.TELEPORT_4
+	Move.TELEPORT_5
+	
+.. NOTE::
+	For detailed documentation, please refer to the Javadocs located in the starter kit.
+
+Questions?
+--------------
+Contact us at challenge@orbis.com

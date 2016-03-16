@@ -1,0 +1,20 @@
+Replay System
+==============
+
+Included in the starter package is a file called Replay.jar. This jar will allow you to view a replay of any game played by BotRampage as all games are recorded. This will require JRE to run which can be downloaded `here <http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html>`__.
+
+To use, open up the jar via command line with the command **java -jar Replay.jar** or you can execute with either **replay.bat** or **replay.sh**. 
+
+.. NOTE::
+	All games played will have their replay file saved in *Results* folder
+
+If no arguments are passed thought the command line, a file chooser will open up and allows you to select the appropriate replay file.
+
+.. figure:: images/FileChooser.png
+	:align: center
+
+If **-l** was passed into command line, the file chooser will open up the latest file in *./Results/* Folder as the file to open.
+
+If a filepath is given, it will open the file at the file path. An example would be *java -jar Replay.jar ./Results/Game1.json*
+
+Once the game is opened, the game will be replayed and the only keyboard input is 'p' where it can pause the game.

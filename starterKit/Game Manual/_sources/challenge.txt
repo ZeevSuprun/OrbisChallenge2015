@@ -1,0 +1,119 @@
+How the Competition is Structured
+=================================
+
+Here is where you can find information on how to do well in the Challenge. 
+
+Submissions
+-----------
+
+Follow the following steps when you are ready to submit your submission. 
+
+1. Make sure all your source code and external libraries inside botplayer are zipped up
+
+.. Warning::
+	To ensure your AI works correctly, included in the package is a validator. Rename your zip to 'botplayer' with the filetype as '.zip' and put it into the folder 'Test'. Run 'UnzipSubmissions.py' then 'Tester.py' with python or run 'validate.bat' or 'validate.sh'. If your AI appears in the game, then your AI will work in the grader!
+
+.. Note::
+	* We only accept .zip files that are under 5 MB in size. 
+	* The libraries that came in the development kits will be replaced when grading, so feel free to exclude them when creating your archive.
+	* Include any custom libraries that you use
+
+2. Upload your newly created archives on 'Submit your AI' on your dashboard on The Challenge website. If you are working in a group of 2, only one of you have to upload it.
+
+.. Note::	
+	You're welcome to submit more than once, but only your latest submission before the submission deadline will be graded, so make sure that one works!
+
+	
+Grading Scheme
+--------------
+
+Each submission's grade is the sum of their outcome score  and their bonus score.
+
+Scores are calculated at the end of the game, and logged in an Json file when the match is completed.
+
+Outcome score
+`````````````
+
+The outcome score of a game differs depending on whether you won, lost or tied the game. Points are awarded as follows: 
+
+===========================================     ====
+Win (Your Opponent Dies)                        2500
+Tie (Either you both die or no one dies)        1000
+Loss (Your AI dies)                             0
+===========================================     ====
+
+Here a win is defined as your opponent dying and a loss is defined as your AI dying. A tie occurs when both players kill each other on the same turn or the game reaches the maximum turn limit.
+
+Bonus score
+```````````
+
+Bonus points are awarded for killing turrets, hitting your opponent, collecting power ups, having turns remaining at 
+the end of the game, and moving.
+
+=======================   	====
+Hitting the opponent   		750
+Killing a turret	   		500
+Collecting a power up   	200
+Remaining Time Bonus		2
+Travel Bonus Per Square 	1
+=======================   	====
+
+Hitting the opponent
+~~~~~~~~~~~~~~~~~~~~
+If you are able to damage your opponent or reflect your opponent's laser, you get 750 points for each time this is accomplished. Note that if your opponent has a shield on, no points are allocated for hitting them.
+
+Killing a turret
+~~~~~~~~~~~~~~~~
+If you kill a turret, whether by using a power up or shooting it, you get 500 points. If both you and your opponent kill the turret on the same turn, the score is split and you each get 250 points.
+
+Collecting a power up
+~~~~~~~~~~~~~~~~~~~~~
+For every power up collected, 200 points are given.
+
+Remaining Time Bonus
+~~~~~~~~~~~~~~~~~~~~
+For every turn remaining after one player eliminates the other player, 2 points are added to the winner per remaining turn.
+For example, if a game with a maximum turn limit of 150 ends on turn 50, 100 turns are left giving the winner of the game 200 extra points.
+
+Travel Bonus Per Square
+~~~~~~~~~~~~~~~~~~~~~~~
+For every square you travel (including squares you have already visited) you get 1 point. Other moves (such as turning or shooting) do not get this movement bonus.
+
+Competition Format
+--------------------
+
+Grading is split into two parts.  There are 3 qualifying rounds against increasingly difficult AIs. If your AI beats all 3 AIs that we will be providing and scores in the top 20 submissions in the contest, it moves on to the round robin.
+
+The top 20 from the preliminaries will move to the last round, where they'll be playing against each other. The top 10 AIs will be chosen for code review in which the top 5 spots are to give a short presentation about their AI. The winners will be determined based on both their performance in the top 20, code review, and presentation.
+
+Settings
+````````
+
+All games will be played using the following settings: 
+
+	* Minimum board size of 5, maximum board size of 21
+	* Maximum amount of time to make a move of 250 milliseconds
+
+	
+Qualifying
+`````````````
+In this round your submission will play against 3 opponents of various difficulties.
+
+First up is a 2-round match against **The Born Loser**. As its name suggests, this AI is very easily killed.
+
+Second up is a 3-round match against **The Rookie**. It's a bit smarter than The Born Loser, but it won't be putting much of a fight.
+
+Finally, you play a 2-round match against **The Contender**. This will demarcate the truly strong entries.
+
+Round Robin Finals
+```````````````````
+Suppose your submission made it to the top 20. Congratulations! There are 19 other players here with you, so it's time to battle it out. You'll be playing a 3-round match against each opponent on various maps, it's time to show them who's the boss!
+
+Algorithm and Code Review
+`````````````````````````
+Congratulations! Your AI have proven they are one of the best, but how's the quality and algorithm of the code? Be sure to make your code as readable as possible and leave some comments for the code reviewers to read!
+
+Presentations
+`````````````
+
+Not only do you have to code well, you should also be able to communicate your ideas fluently. The teams that have their submissions land in the top 5 after the playoffs and code review are asked to give a short presentation to talk about the problems they faced, and how they overcame them.

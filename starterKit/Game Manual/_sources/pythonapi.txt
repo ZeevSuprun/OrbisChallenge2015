@@ -1,0 +1,124 @@
+Python API
+===========
+
+.. NOTE::
+	Python 3.4 or above is required, if you have an older version of Python. Upgrade `here <https://www.python.org/downloads/>`__
+
+	
+All of the specific information and docstrings regarding the usage of the Python API can be found in “libs/Game/GameObjects” and “libs/Game/GameBoard”.
+
+
+.. WARNING::
+  Don't change the function definition for get_move. This function is called by the client code (which you also shouldn't modify) because when you submit your file only your PlayerAI file and any additional libraries are kept and any client code is removed. Thus, if you change the method, your code will cause an Exception and ultimately invalidate all of your work.
+
+	
+The Game Map
+------------
+The game map is represented as a 2D array and is accessible through the gameboard variable that is passed to get_move. The board is represented as a 2D array and each tile has an associated Cartesian coordinate with the top left tile being (0, 0).
+
+From the imported Enums.py file, there are some variables representing the name of what could be occupying a board piece. Below is an example.
+
+.. figure:: images/Intro.png
+	:align: center
+
+.. code-block:: python
+
+	# some sample code with gameboard
+	gameboard.width == 13 # True
+	gameboard.height == 13 # False
+	gameboard.power_ups	# Gets a list of power ups
+	len(gameboard.power_ups) == 5 # True
+	gameboard.get_turns_remaining() # Gets turns remaining in the game
+	gameboard.current_turn # Gets the current turn number
+	gameboard.bullets # Gets an array of bullets
+	gameboard.turrets # Gets an array of turrets
+	gameboard.walls # Gets an array of walls
+	gameboard.teleport_locations # Gets an array of [x,y] coords of teleport locations
+	gameboard.is_power_up_at_tile(0,0) # False
+	gameboard.is_power_up_at_tile(6,7) # True
+	gameboard.are_bullets_at_tile (0,0) # False
+	gameboard.is_wall_at_tile (0,0) # False
+	gameboard.is_wall_at_tile (3,0) # True
+	gameboard.power_up_at_tile[6][7] # Gets the teleport power up at (6,7)
+	gameboard.power_up_at_tile[0][0] # None type
+	gameboard.teleport_locations # Gets a list of points in order of the teleport locations 
+	gameboard.power_ups[0].power_up_type # Gets the powerUpType of the first power up
+	if (gameboard.is_turret_at_tile(3,5)):
+		gameboard.turret_at_tile[3][5].did_fire # Checks if the turret fired at the beginning of this turn
+		gameboard.turret_at_tile[3][5].is_firing_next_turn # Checks if it is going to fire
+		gameboard.turret_at_tile[3][5].fire_time # Get the fire time
+		gameboard.turret_at_tile[3][5].cooldown_time # Get the cooldown time
+	gameboard.power_up_at_tile[6][7].power_up_type == PowerUpTypes.SHIELD # False
+	gameboard.power_up_at_tile[6][7].power_up_type == PowerUpTypes.TELEPORT # True
+	
+	# And if there were bullets on the field
+	gameboard.bullets[0].direction # Gets the direction the bullet is travelling
+	gameboard.bullets[0].shooter # Get the shooter of the bullet
+	
+			
+.. WARNING::
+	If you try to query a location outside the map such as gameboard.is_wall_at_tile(x,y), you'll get a MapOutOfBoundsException.
+
+
+The Players
+------------
+Your player is represented by the player object while the opponent is represented as the opponent object.
+
+.. code-block:: python
+
+	# Player class
+	player.x # Gets x coordinate
+	player.y # Gets y coordinate
+	player.laser_count # The number of laser power ups the player has in their inventory
+	player.teleport_count # The number of laser power ups the player has in their inventory
+	player.shield_count # The number of shield power ups the player has in their inventory
+	player.shooters # Gets a list of all the shooters 
+			# from last turn which corresponds with projectiles,
+			# object is None if shot by turret
+	player.projectiles # Gets an list of all the projectiles, they are Enum of either LASER or BULLET
+	player.was_hit() # Return if they were hit last turn
+	player.did_make_a_move # Gets whether the last players move was Move.NONE (or no response)
+	player.shield_active # Gets if the player shield is active this turn
+	player.hp # Gets the hp of the player
+	player.score # Get the score of the player
+	player.direction # Gets the direction of the player
+	
+	# Opponent class
+	opponent.x # Gets x coordinate
+	opponent.y # Gets y coordinate
+	opponent.shield_active # Gets if the opponent shield is active this turn
+	opponent.hp # Gets the hp of the opponent
+	opponent.score # Get the score of the opponent
+	opponent.last_move # Gets what Enum Move the opponent made last turn
+	opponent.direction # Gets the direction the opponent is facing
+	opponent.laser_count # The number of laser power ups the opponent has in their inventory
+	opponent.teleport_count # The number of laser power ups the opponent has in their inventory
+	opponent.shield_count # The number of shield power ups the opponent has in their inventory
+	
+
+
+What To Return
+----------------
+getMove returns a Move. Here they are listed for your convenience. For more information check out: :doc:`controls`
+
+.. code-block:: python
+
+	Move.FACE_UP
+	Move.FACE_DOWN
+	Move.FACE_LEFT
+	Move.FACE_RIGHT
+	Move.NONE
+	Move.SHOOT
+	Move.FORWARD
+	Move.SHIELD
+	Move.LASER
+	Move.TELEPORT_0
+	Move.TELEPORT_1
+	Move.TELEPORT_2
+	Move.TELEPORT_3
+	Move.TELEPORT_4
+	Move.TELEPORT_5
+
+Questions?
+--------------
+Contact us at challenge@orbis.com

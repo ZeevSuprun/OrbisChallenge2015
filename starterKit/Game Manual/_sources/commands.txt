@@ -1,0 +1,121 @@
+Command Line Arguments
+======================
+
+The game is set up into two parts. There is the server, which hosts the game, and the clients, in which runs the AI players. 
+
+.. _sserver:
+
+Starting the Server
+-------------------
+
+To run the game server, open up terminal or a command line window. Navigate to the extracted devkit folder.  
+
+If you are running Windows, navigate to your development kit directory and type in::
+
+  runserver.bat 
+
+Otherwise, type in
+
+.. code-block:: bash 
+
+  bash runserver.sh
+
+This will start the game up in the settings of settings.json or default settings if no settings file exist. 
+
+.. _args:
+
+How to Configure the Game Server
+--------------------------------
+
+There are two ways to configure the game, either by changing the values in the **Resources/settings.json** file, or by setting options through the **command line**. 
+
+.. note::
+	* settings.json can be edited using a text editor.
+	* Values passed in through the command line overrides settings.json configures during runtime. That is, if option A is set as 1 in the properties file and -1 through the command line, the game will set option A to -1. 
+	* Default values are used when no properties file and no command line arguments are present or invalid.
+
+**Scroll to the right of the table to see further descriptions for each argument.**
+
+
++--------------+----------------------+-----------------+-----------------------------+--------------------------------------------------------------------------------------------+
+| Command line | Properties key       | Default Values  | Possible values             | What it does                                                                               |
++==============+======================+=================+=============================+============================================================================================+
+| -n           |  numberOfAIPlayers   | 0               | 0,1,2                       | Sets the number of players that are AIs. 0 would mean 2 human players                      |
++--------------+----------------------+-----------------+-----------------------------+--------------------------------------------------------------------------------------------+
+| -go          | renderGUI            | true            | true, false in JSON.        | If the flag is present, the GUI is disabled.                                               |
+|              |                      |                 | GUI is off if present       | When GUI is off, the board is printed to the console instead.                              |
+|              |                      |                 | in command line             |                                                                                            |
++--------------+----------------------+-----------------+-----------------------------+--------------------------------------------------------------------------------------------+
+| -map         | mapName              | SimpleMap1.json | SimpleMap1.json, Map1.json  | The map to use for the game.                                                               |
+|              |                      |                 |                             |	The map used for grading will be different from these.                                     |
+|              |                      |                 |                             |	The format of these maps are in JSON so feel free to change the maps or make new ones!     |
++--------------+----------------------+-----------------+-----------------------------+--------------------------------------------------------------------------------------------+
+| -s           | swapAIPlayers        | false           | true, false                 | AI by default is player 1.                                                                 |
+|              |                      |                 |                             | When set to true, human controls player 1 and AI becomes player 2.                         |
++--------------+----------------------+-----------------+-----------------------------+--------------------------------------------------------------------------------------------+
+| -rt          | maxResponseTime      | 250             | integer                     | The allowed response time in ms for AI players before their turn is skipped.               |
+|              |                      |                 |                             | A NONE move is returned recorded in it's place for timeout.                                |
++--------------+----------------------+-----------------+-----------------------------+--------------------------------------------------------------------------------------------+
+| -d           | keyboardDelay        | 300             | integer                     | The keyboard delay for human players in ms before their move is skipped.                   |
+|              |                      |                 |                             | A NONE move is returned recorded in it's place for timeout.                                |
++--------------+----------------------+-----------------+-----------------------------+--------------------------------------------------------------------------------------------+
+| -t           | serverTimeout        | 20000           | integer                     | How long the server waits until it gives up waiting for client in ms                       |
++--------------+----------------------+-----------------+-----------------------------+--------------------------------------------------------------------------------------------+
+| -p           | portNumber           | 4461            | integer                     | The port number the server uses to for clients to bind to                                  |
+|              |                      |                 |                             | NOTE: If the server and client have different port numbers, the game will not start!       |
++--------------+----------------------+-----------------+-----------------------------+--------------------------------------------------------------------------------------------+
+
+.. NOTE::
+	To change the client port, specify -p followed by port number. -p is the only supported flag for clients.
+
+**Example**:
+
+.. code-block:: bash
+
+	runserver.bat -p 19999 -map SimpleMap1.json
+
+.. _sclient:
+
+Starting a Client
+-----------------
+
+Once the server is started, the server will wait for an incoming connection from a client. 
+
+To start the client, you need to provide the *host* and *port* of the server that you wish to connect to
+
+The port used will either be the default port **4461** or whatever you have changed it to, either through the command line or set through the settings.json file. 
+
+Open a new command prompt or terminal and move into the directory where you have the runclient scripts. 
+
+On Windows, type the following to start a client
+
+.. code-block:: bash
+	
+	# JAVA
+	compile.bat 
+	runclient.bat
+
+	# PYTHON 
+	py -3 RunPythonClient.py
+	OR
+	runclient
+
+On OSX or Linux machines, type the following to start a client
+
+.. code-block:: bash
+	
+	# JAVA
+	bash compile.sh 
+	bash runclient.sh
+
+	# PYTHON 
+	python3 RunPythonClient.py
+	OR
+	bash runclient.sh
+
+Make sure the runclient script you are using came from the devkit for the language you are writing for. 
+
+Starting Two AIs
+-------------------------
+
+If you want to have two AIs play against each other, or one AI play itself, open up two terminal windows. Navigate to the respective directories of the AIs that will be playing each other. Now follow the above steps for starting a client twice (the above steps). Voila!

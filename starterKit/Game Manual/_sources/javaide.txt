@@ -1,0 +1,216 @@
+
+Setting up your IDE
+========================
+
+An IDE can help with coding. 3 IDEs are demonstrated: Eclipse (recommended), IntelliJ, and BlueJ. 
+
+Python
+``````
+To start the game, navigate to your development kit Folder and open the 3 batch file on Windows or 3 shell files on linux in the order given below. You can also call these in command line and pass parameters through them.
+Write your AI in PlayerAI.py
+
+ .. image:: images/IntelliJ10.png
+	:align: center
+	
+Eclipse (recommended)
+`````````````````````
+
+Set Up
+------
+
+1. Set up a workspace.
+
+.. image:: images/Eclipse1.png
+	:align: center
+
+2. Set up a new project under *File* -> *New* -> *Java Project*.
+
+.. image:: images/Eclipse2.png
+	:align: center
+
+3. Name your project and hit next.
+
+.. image:: images/Eclipse3.png
+	:align: center
+
+4. Check on *Allow output folder for source folders* then hit *Libraries*.
+
+.. image:: images/Eclipse4.png
+	:align: center
+	
+5. Click *Add External JARs*.
+
+.. image:: images/Eclipse5.png
+	:align: center
+
+6. Navigate to the Java Library Folder and add both libraries.
+
+.. image:: images/Eclipse6.png
+	:align: center
+	
+7. Close the Welcome Menu.
+
+.. image:: images/Eclipse7.png
+	:align: center
+
+8. Copy all the files in the *Java* folder into the project.
+
+ .. image:: images/Eclipse8.png
+	:align: center
+	
+9. Drag *PlayerAI.java* from *botplayer* into src. Your eclipse should look like the below picture.
+
+ .. image:: images/Eclipse9.png
+	:align: center
+
+10. Start coding in PlayerAI.java
+	
+Starting Game
+----------------
+
+1. To start a game, right click *BotRampage.jar* under *Referenced Libraries*. Go to *Run As* and click *Java Application*.
+
+ .. image:: images/Eclipse10.png
+	:align: center
+	
+2. Select *RunGame - com.orbischallenge.main* as the main class to run. A window will pop up.
+
+ .. image:: images/Eclipse11.png
+	:align: center
+
+3. Right click *RunClient.jar* under *Referenced Libraries*. Go to *Run As* and click *Java Application*.
+
+ .. image:: images/Eclipse12.png
+	:align: center
+
+Next Steps: If you need command line options: go to *Run Configurations* and change arguments to *RunGame*.
+
+ .. image:: images/Eclipse13.png
+	:align: center
+	
+ .. image:: images/Eclipse14.png
+	:align: center
+
+IntelliJ
+`````````
+
+Set Up
+------
+
+1. Click *Create New Project*.
+
+ .. image:: images/IntelliJ1.png
+	:align: center
+
+2. Select JDK if needed by clicking *New...* -> *JDK* and select the appropriate JDK.
+
+ .. image:: images/IntelliJ2.png
+	:align: center
+	
+ .. image:: images/IntelliJ3.png
+	:align: center	
+
+3. One IntelliJ has detected JDK, click *Next*.
+
+ .. image:: images/IntelliJ4.png
+	:align: center
+
+4. Name your project and hit *Finish*.
+
+ .. image:: images/IntelliJ5.png
+	:align: center
+	
+5. Copy all the files in the folder 'Java' into your project (top level folder) except PlayerAI.class if it exists. 
+   Drag and drop would work as well as copy and pasting.
+
+ .. image:: images/IntelliJ6.png
+	:align: center
+	
+6. Right click the folder *botplayer* and go to *Mark Directory As* and click *Sources Root*.
+
+ .. image:: images/IntelliJ7.png
+	:align: center
+	
+7. Go to *Java Library* and right click *BotRampage.jar* and click *Add as Library*.
+
+ .. image:: images/IntelliJ8.png
+	:align: center
+	
+8. Go to *Java Library* and right click *JavaClient.jar* and click *Add as Library*.
+
+ .. image:: images/IntelliJ9.png
+	:align: center
+	
+9. Start coding in PlayerAI.java.
+
+Starting Game
+--------------
+
+1. To start the game, navigate to your IntelliJ Project Folder and open the 3 batch file on Windows or 3 shell files on linux in the order given below. You can also call these in command line and pass parameters through them.
+
+ .. image:: images/IntelliJ10.png
+	:align: center
+	
+BlueJ
+`````
+
+Set Up
+------
+
+1. Go to *Project* and click *Open Non BlueJ*.
+
+ .. image:: images/BlueJ1.png
+	:align: center
+
+2. Navigate and select the folder *botplayer* and click *open in BlueJ*.
+
+ .. image:: images/BlueJ2.png
+	:align: center
+	
+3. Go to *Tools* and select *Preferences*.
+
+ .. image:: images/BlueJ3.png
+	:align: center
+
+4. Go to the *Libraries*  tab and click *Add*.
+
+ .. image:: images/BlueJ4.png
+	:align: center
+	
+5.Open *BotRampage.jar*.
+
+ .. image:: images/BlueJ5.png
+	:align: center
+
+6. Do the same with *JavaClient.jar*.
+
+.. image:: images/BlueJ6.png
+	:align: center
+	
+7. 	Click *Ok* on both windows.
+
+.. image:: images/BlueJ7.png
+	:align: center
+	
+.. image:: images/BlueJ8.png
+	:align: center
+	
+8. Click *Tools* and Click on *Rebuild Package*.
+
+.. image:: images/BlueJ9.png
+	:align: center
+	
+9. Click *Tools* and Click on *Reset Java Virtual Machine*.
+
+.. image:: images/BlueJ10.png
+	:align: center
+	
+10. Start coding in PlayerAI.java.	
+
+Starting Game
+--------------
+
+1. To start the game, navigate to your development kit Folder and open the 3 batch file on Windows or 3 shell files on linux in the order given below. You can also call these in command line and pass parameters through them.
+
+ .. image:: images/IntelliJ10.png
+	:align: center
