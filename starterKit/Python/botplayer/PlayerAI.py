@@ -355,7 +355,7 @@ class PlayerAI:
                     return 6 #teleport somewhere safe
                 if player.shield_count>0:
                     return 3 #activate shield
-                return 0 #all moves will lose a life, pray to atheismo for protection
+                return 0 #all moves will lose a life
             return 5#move forward
         elif(x==2):
             return 2
@@ -505,29 +505,3 @@ class PlayerAI:
                 return Move.NONE
             else:
                 return possibleMoves.pop()
-
-
-'''
-Move.FACE_UP, Move.FACE_DOWN, Move.FACE_LEFT, Move.FACE_RIGHT, Move.NONE, Move.FORWARD
-
-'''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
